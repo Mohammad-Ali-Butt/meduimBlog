@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-body">
+    <h2 class="text-center"><%= render @post %></h2>
+    <%= link_to "Edit this post", edit_post_path(@post), class: 'btn btn-primary' %> 
+    <%= link_to "Back to posts", posts_path, class: 'btn btn-primary' %>
+    <% if current_user.has_role?(:admin) || @post.user == current_user%>
+    <%= link_to "Destroy this post", @post, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-primary' %>
+    <% end %>
+    <%= content_tag :div, class: "#{dom_id(@post)}_likes" do %>
+          <%= render "likes/like", likeable: @post%>
+          <% end %>
+    <%= pluralize(@post.likes.count, 'like') %>
+  </div>
+</div>
+
+
+<%= render @post.comments%>
+
+
+<div class="card my-1">
+  <div class="card-body">
+    <h2 class="font-weight-bold">Comments</h2>
+    <%= form_with(model: [@post, @post.comments.new]) do |f| %>
+      <div class="form-group">
+        <%= f.label 'New comment' %>
+        <%= f.text_area :body, class: 'form-control' %>
+      </div>
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
+
+
+

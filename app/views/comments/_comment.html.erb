@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-body">
+  <% if comment.commenter%>
+    <%= comment.commenter.email %>
+    <% end%>
+  </div>
+</div>
+
+<div class="card"> 
+  <div class="card-body">
+    <%= comment.body %>
+  </div>
+</div>
+
+
+
+<%= form_for [comment, Comment.new], remote: true do |f| %>
+  <%=  f.text_area :body, placeholder: "Add a Reply" %><br/>
+  <%= f.submit "Reply"%>
+  <% end %>
+</div>
+
+<%= render comment.comments%>
+
+
+<% if current_user.admin? || current_user == comment.commenter%>
+  <%= link_to "Destroy Comment", [comment.commentable, comment], data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
+<% end %>
+
+<%= content_tag :div, class: "#{dom_id(comment)}_likes" do %>
+  <%= render "likes/like", likeable: comment %>
+<% end %>
+<%= pluralize(comment.likes.count, 'Like') %>
+
+
+

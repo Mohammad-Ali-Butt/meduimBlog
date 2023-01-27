@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="background-color: #f1bd2c;">
+  <div class="container px-4">
+    <a class="navbar-brand" href="/posts">
+    <img src="https://miro.medium.com/max/8978/1*s986xIGqhfsN8U--09_AdA.png" width="160" height="50">
+    </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item"><a class="nav-link" href="https://medium.com/about?autoplay=1">Our Story</a></li>
+                  <li class="nav-item"><a class="nav-link" href="https://medium.com/membership?source=about_page---membership_top_nav_link-----------------------about_page_membership_top_nav_link-&utm_source=about&utm_medium=landing-page&utm_campaign=membership&utm_content=top-nav">Membership</a></li>
+                  <li class="nav-item"><a class="nav-link" href="https://medium.com/creators">Write</a></li>
+                  <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to "Sign In", new_user_session_path, class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, notice: "Sign out successfully", class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to "Edit Profile", edit_user_registration_path, class: "nav-link" %></li>
+                  <button type="button" class="btn btn-dark">Get Started</button>
+              </ul>
+          </div>
+    </div>
+</nav>
